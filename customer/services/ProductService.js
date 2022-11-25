@@ -50,16 +50,13 @@ function ProductService(){
         var resultArray = [];
         // trim space and convert lowercase
         var typeLowerCase = typeProduct.replace(/\s/g, "").toLowerCase();
-        // console.log("typeLowerCase: ", typeLowerCase);
         
         var promise = this.getListProduct();
         promise.then(function(result){
             // TODO: filter here
             result.data.map(function(product){
-                // console.log("product: ", product);
                  // trim space and convert lowercase
                 typeProduct = product.type.replace(/\s/g, "").toLowerCase();
-                // console.log("typeProduct: ", typeProduct);
                 if (typeProduct === typeLowerCase) {
                     resultArray.push(product);
                 }
@@ -70,7 +67,12 @@ function ProductService(){
             console.log("getListProducts: ", error);
         });
 
-        // console.log(resultArray);
+        /* FIXME:
+        []
+            0: {id: '2', name: 'Samsung Galaxy S22 Ultra', price: '1100', screen: 'screen 6.8', backCamera: '108 MP & 12 MP, 10 MP, 10 MP', …}
+            1: {id: '3', name: 'Samsung Galaxy Z Fold3', price: '1300', screen: 'screen 6.8', backCamera: '12 MP, 12 MP, 12 MP', …}length: 2[[Prototype]]: Array(0)
+        */ 
+        console.log("Before return:", resultArray);
 
         return resultArray;
     }
