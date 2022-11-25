@@ -14,6 +14,8 @@
   <!-- Bootstrap 5.2 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <link rel="stylesheet" href="./asset/css/main.css">
   <title>Mỡ Store</title>
 </head>
@@ -38,7 +40,7 @@
               </li>
             </ul>
 
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Cart</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" onclick="openCartCanvas()">Cart</button>
             <!-- </form> -->
           </div>
         </div>
@@ -80,27 +82,38 @@
             <!-- List items which user choose to buy -->
             <div class="cart__products">
               
-              <div class="cart__productItem">
-                <div class="item__thumbnail">
-                  <img src="./asset/img/iphone-14-pro-max-256gb-tim-1.jpeg" alt="" style="height: 60px;">
-                </div>
-                <div class="item__detail">
-                  <div class="item__name">Name</div>
-                  <div class="item__screen">Screen</div>
-                  <div class="item__backCamera">Back Camera</div>
-                  <div class="item__frontCamera">Front Camera</div>
-                  <div class="item__removeBtn">Remove</div>
-                </div>
-                <div class="item__payment">
-                  <div class="item__quantity">
-                    <span>Quantity</span>
-                    <span>-</span>
-                    <span>10</span>
-                    <span>+</span>
+              <div class="cart__productItem" id="listCartItems">
+
+                <!-- <div class="card mb-3 cart__item" style="max-width: 540px;">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img src="./asset/img/iphone-14-pro-max-256gb-tim-1.jpeg" class="img-thumbnail border border-0">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">iPhone 14 Pro Max</h5>
+                        <button type="button" class="btn btn-link">Remove</button>
+                      </div>
+                    </div>
                   </div>
-                  <div class="item__money">1000$</div>
-                </div>
+                  <div class="m-3">
+                    <span>Quantity</span>
+                    <button type="button" class="btn btn-link btn-sm btn-quantity">
+                      <i class="fa-solid fa-minus"></i>
+                    </button>
+
+                    <span class="px-1">10</span>
+                    
+                    <button type="button" class="btn btn-link btn-sm btn-quantity">
+                      <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <span class="mx-5 product__price">10,000$</span>
+                  </div>
+                </div> -->
+
               </div>
+
+
 
             </div>
 
@@ -124,6 +137,7 @@
   <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   
   <script src="./customer/model/Products.js"></script>
+  <script src="./customer/model/CartItem.js"></script>
   <script src="./customer/services/ProductService.js"></script>
   <script src="./customer/controller/main.js"></script>
 

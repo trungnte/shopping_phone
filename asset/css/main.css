@@ -12,4 +12,8 @@ html, body {
   font-size: 18px;
   font-weight: 700;
   color: #ff0000;
+}
+
+.cart__productItem .btn-quantity {
+  text-decoration: none;
 }/*# sourceMappingURL=main.css.map */
