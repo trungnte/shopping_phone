@@ -37,7 +37,7 @@ function displayProducts(arrayProduct) {
     // console.log(arrayProduct);
     arrayProduct.map(function(product){
         content += `
-        <div class="col">
+        <div class="col-3">
             <div class="card" style="width: 18rem;">
                 <img src="${product.img}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -73,7 +73,7 @@ function filterProductByType(typeProduct) {
 function filterProduct() {
     var inputProductType = document.querySelector("#filterProduct").value;
     var arrayFilterPorduct = filterProductByType(inputProductType);
-    // console.log(arrayFilterPorduct);
+    console.log(arrayFilterPorduct);
     displayProducts(arrayFilterPorduct);
 }
 
