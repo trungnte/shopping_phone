@@ -132,3 +132,70 @@ function addToCart(id) {
         console.log(listCartItem);
     }
 }
+
+// render Item in Cart
+function renderItemInCart(arrayItem) {
+    var content = "";
+    arrayItem.map(function(cartItem){
+        content += `
+        <div class="card mb-3 cart__item" style="max-width: 540px;">
+            <div class="row g-0">
+            <div class="col-md-4">
+                <img src="${cartItem.product.img}" class="img-thumbnail border border-0">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                <h5 class="card-title">${cartItem.product.name}</h5>
+                <p class="card-text">${cartItem.product.desc}</p>
+                <!-- <p class="card-text">1000$</p> -->
+                <button type="button" class="btn btn-link" onclick="removeCartItem(${cartItem.product.id})">Remove</button>
+                </div>
+            </div>
+            </div>
+            <div class="m-3">
+            <span>Quantity</span>
+            <button type="button" class="btn btn-link btn-sm btn-quantity" onclick="adjustQuantity(${cartItem.product.id}, -1)">
+                <i class="fa-solid fa-minus"></i>
+            </button>
+
+            <span class="px-1">${cartItem.quantity}</span>
+            
+            <button type="button" class="btn btn-link btn-sm btn-quantity" onclick="adjustQuantity(${cartItem.product.id}, 1)">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+            <span class="mx-5 product__price">${cartItem.quantity * cartItem.product.price}$</span>
+            </div>
+        </div>
+        `;
+    });
+
+    // console.log(content)
+    document.querySelector("#listCartItems").innerHTML = content;
+}
+
+function openCartCanvas() {
+    renderItemInCart(listCartItem);
+}
+
+// remove item out of cart
+function removeCartItem(id) {
+    // remove item out of list
+    var index = checkItemInCart(id);
+    if(index >= 0) {
+        listCartItem.splice(index, 1);
+        renderItemInCart(listCartItem);
+    }
+}
+
+function adjustQuantity(id, num) {
+    var index = checkItemInCart(id);
+    if(index >= 0) {
+        listCartItem[index].quantity += num;
+        if(listCartItem[index].quantity <= 0) {
+            removeCartItem(id);
+        }
+        else {
+            renderItemInCart(listCartItem);
+        }
+    }
+}
