@@ -1,12 +1,28 @@
+//  global variable
+var listProduct = [];
 
 // declare a global variable for Product List
 var productService = new ProductService();
+
+// set local storage
+function setLocalStorage() {
+    localStorage.setItem("LISTPRODUCT", listProduct);
+}
+// get local storage
+function getLocalStorage() {
+    if(localStorage.getItem("LISTPRODUCT") != null) {
+        listProduct = JSON.parse(localStorage.getItem("LISTPRODUCT"));
+        displayProducts(listProduct);
+    }
+}
 
 function getListProducts() {
     var promise = productService.getListProduct();
     promise.then(function(result){
         // Success
         displayProducts(result.data);
+        listProduct = result.data;
+        setLocalStorage();
     });
 
     promise.catch(function(error){
@@ -15,24 +31,10 @@ function getListProducts() {
 }
 
 // display Products
-/**
- * {
-  "id": "1",
-  "name": "iphoneX",
-  "price": "1000",
-  "screen": "screen 68",
-  "backCamera": "2 camera 12 MP",
-  "frontCamera": "7 MP",
-  "img": "https://cdn.tgdd.vn/Products/Images/42/114115/iphone-x-64gb-hh-600x600.jpg",
-  "desc": "Thiết kế mang tính đột phá",
-  "type": "iphone"
- }
- * */ 
-
 function displayProducts(arrayProduct) {
     var content = "";
-    console.log(typeof arrayProduct);
-    console.log(arrayProduct);
+    // console.log(typeof arrayProduct);
+    // console.log(arrayProduct);
     arrayProduct.map(function(product){
         content += `
         <div class="col">
@@ -53,9 +55,24 @@ function displayProducts(arrayProduct) {
 }
 
 
+// filterProduct
+function filterProductByType(typeProduct) {
+    var resultArray = [];
+    // trim space and convert lowercase
+    var typeLowerCase = typeProduct.replace(/\s/g, "").toLowerCase();
+    listProduct.map(function(product){
+            // trim space and convert lowercase
+        typeProduct = product.type.replace(/\s/g, "").toLowerCase();
+        if (typeProduct === typeLowerCase) {
+            resultArray.push(product);
+        }
+    });
+    return resultArray;
+}
+
 function filterProduct() {
     var inputProductType = document.querySelector("#filterProduct").value;
-    var arrayFilterPorduct = productService.filterProductByType(inputProductType);
+    var arrayFilterPorduct = filterProductByType(inputProductType);
     // console.log(arrayFilterPorduct);
     displayProducts(arrayFilterPorduct);
 }
