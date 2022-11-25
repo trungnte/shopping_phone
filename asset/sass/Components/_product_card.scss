@@ -1,0 +1,3 @@
+.product__price {
+    @include styleText($fs-2, $fw-2, $color-red-0);
+}

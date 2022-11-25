@@ -37,8 +37,7 @@ function displayProducts(arrayProduct) {
                 <img src="${product.img}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
-                    <p class="card-text">${product.desc}</p>
-                    <p class="card-text">${product.price}</p>
+                    <p class="card-text product__price">${product.price.toLocaleString()}$</p>
                     <a href="#" class="btn btn-primary">Add to cart</a>
                 </div>
             </div>
