@@ -1,3 +1,4 @@
+
 // declare a global variable for Product List
 var productService = new ProductService();
 
@@ -30,6 +31,8 @@ function getListProducts() {
 
 function displayProducts(arrayProduct) {
     var content = "";
+    console.log(typeof arrayProduct);
+    console.log(arrayProduct);
     arrayProduct.map(function(product){
         content += `
         <div class="col">
@@ -45,9 +48,20 @@ function displayProducts(arrayProduct) {
         `;
     });
 
-    console.log(content)
+    // console.log(content)
     document.querySelector("#list__product").innerHTML = content;
 }
 
 
+function filterProduct() {
+    var inputProductType = document.querySelector("#filterProduct").value;
+    var arrayFilterPorduct = productService.filterProductByType(inputProductType);
+    // console.log(arrayFilterPorduct);
+    displayProducts(arrayFilterPorduct);
+}
+
+
+
+
+//  entry program
 getListProducts();
