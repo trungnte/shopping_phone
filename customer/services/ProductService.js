@@ -44,4 +44,34 @@ function ProductService(){
             data: newData
         });
     }
+
+    // filterProduct
+    this.filterProductByType = function(typeProduct) {
+        var resultArray = [];
+        // trim space and convert lowercase
+        var typeLowerCase = typeProduct.replace(/\s/g, "").toLowerCase();
+        // console.log("typeLowerCase: ", typeLowerCase);
+        
+        var promise = this.getListProduct();
+        promise.then(function(result){
+            // TODO: filter here
+            result.data.map(function(product){
+                // console.log("product: ", product);
+                 // trim space and convert lowercase
+                typeProduct = product.type.replace(/\s/g, "").toLowerCase();
+                // console.log("typeProduct: ", typeProduct);
+                if (typeProduct === typeLowerCase) {
+                    resultArray.push(product);
+                }
+            });
+        });
+
+        promise.catch(function(error){
+            console.log("getListProducts: ", error);
+        });
+
+        // console.log(resultArray);
+
+        return resultArray;
+    }
 }
