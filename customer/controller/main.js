@@ -1,3 +1,4 @@
+
 // declare a global variable for Product List
 var productService = new ProductService();
 
@@ -30,6 +31,8 @@ function getListProducts() {
 
 function displayProducts(arrayProduct) {
     var content = "";
+    console.log(typeof arrayProduct);
+    console.log(arrayProduct);
     arrayProduct.map(function(product){
         content += `
         <div class="col">
@@ -37,8 +40,7 @@ function displayProducts(arrayProduct) {
                 <img src="${product.img}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
-                    <p class="card-text">${product.desc}</p>
-                    <p class="card-text">${product.price}</p>
+                    <p class="card-text product__price">${product.price.toLocaleString()}$</p>
                     <a href="#" class="btn btn-primary">Add to cart</a>
                 </div>
             </div>
@@ -46,9 +48,20 @@ function displayProducts(arrayProduct) {
         `;
     });
 
-    console.log(content)
+    // console.log(content)
     document.querySelector("#list__product").innerHTML = content;
 }
 
 
+function filterProduct() {
+    var inputProductType = document.querySelector("#filterProduct").value;
+    var arrayFilterPorduct = productService.filterProductByType(inputProductType);
+    // console.log(arrayFilterPorduct);
+    displayProducts(arrayFilterPorduct);
+}
+
+
+
+
+//  entry program
 getListProducts();

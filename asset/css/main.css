@@ -2,4 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html, body {
+  font-family: "Roboto", sans-serif;
+}
+
+.product__price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ff0000;
 }/*# sourceMappingURL=main.css.map */
