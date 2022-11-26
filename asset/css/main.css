@@ -16,4 +16,10 @@ html, body {
 
 .cart__productItem .btn-quantity {
   text-decoration: none;
+}
+
+.product__notify {
+  font-size: 14px;
+  font-weight: 400;
+  color: #ff0000;
 }/*# sourceMappingURL=main.css.map */
