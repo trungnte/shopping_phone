@@ -8,18 +8,21 @@
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
-  <!-- Bootstrap 5.2 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
 
 
-  <title>Admin Portal</title>
+  <title>Mỡ Store Admin</title>
 </head>
 
 <body>
   <div class="container">
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">Mỡ Store</a>
       <button
         class="navbar-toggler d-lg-none"
         type="button"
@@ -36,30 +39,12 @@
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="dropdownId"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              >Dropdown</a
-            >
-            <div class="dropdown-menu" aria-labelledby="dropdownId">
-              <a class="dropdown-item" href="#">Action 1</a>
-              <a class="dropdown-item" href="#">Action 2</a>
-            </div>
-          </li>
         </ul>
       </div>
     </nav>
 
     <header class="display-4 my-4">
-      Thực hành javascript - axios
+      Quản lý sản phẩm
     </header>
     <!-- Phan tab menu -->
     <ul class="nav nav-tabs" role="tablist">
@@ -121,7 +106,8 @@
               <th>Tên Sản Phẩm</th>
               <th>Giá</th>
               <th>Hình Ảnh</th>
-              <th>Mô Tả</th>                
+              <th>Loại</th>
+              <th>Mô Tả</th>
               <th>Action</th>
             </thead>
             <tbody id="tblDanhSachSP"></tbody>
@@ -163,7 +149,35 @@
                 class="form-control"
                 placeholder="Nhập vào giá"
               />
-            </div>             
+            </div>
+
+            <div class="form-group">
+              <label>Màn hình</label>
+              <input
+                id="ManHinh"
+                class="form-control"
+                placeholder="Nhập vào kích thước màn hình"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Camera sau</label>
+              <input
+                id="CameraSau"
+                class="form-control"
+                placeholder="Nhập vào thông số camera sau"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Camera trước</label>
+              <input
+                id="CameraTruoc"
+                class="form-control"
+                placeholder="Nhập vào thông số camera trước"
+              />
+            </div>
+
             <div class="form-group">
               <label>Hình Ảnh</label>
               <input
@@ -172,6 +186,14 @@
                 placeholder="Nhập vào hình sản phẩm"
               />
             </div>
+
+              <select class="form-select w-25 p-1 mt-3 mb-3" id="LoaiSP" aria-label="Default select example">
+                <!-- <option selected value="full">Loại sản phẩm</option> -->
+                <option selected value="iphone">iPhone</option>
+                <option value="samsung">Samsung</option>
+            </select>
+
+
             <div class="form-group">
               <textarea class="form-control" id="Mota" cols="30" rows="10" placeholder="Nhập mô tả"></textarea>
             </div>
@@ -205,8 +227,11 @@
 
 
 
-  <!-- Bootstrap 5.2 -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
 
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://code.highcharts.com/modules/series-label.js"></script>
@@ -216,6 +241,10 @@
   <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
 
+  <!-- code js -->
+  <script src="../model/Products.js"></script>
+  <script src="../services/ProductService.js"></script>
+  <script src="../controller/admin_main.js"></script>
 
 </body>
 
