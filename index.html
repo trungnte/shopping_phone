@@ -55,7 +55,7 @@
         <!-- select to filter product here -->
         <!-- TODO: responsive display text if width is small -->
         <select class="form-select w-25 p-1 mt-3 mb-3" id="filterProduct" aria-label="Default select example" onChange="filterProduct()">
-          <option selected>Lọc sản phẩm theo loại</option>
+          <option selected value="full">Lọc sản phẩm theo loại</option>
           <option value="iphone">iPhone</option>
           <option value="samsung">Samsung</option>
         </select>
@@ -74,7 +74,7 @@
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasRightLabel">Shopping Cart</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" id="closeCart"></button>
         </div>
         <div class="offcanvas-body">
           <div class="cart__contents">
@@ -113,7 +113,20 @@
 
               </div>
 
-
+              <!-- <div class="cart__total">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <th>Total</th>
+                      <td class="align-right">1000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="cart__footer d-flex p-2">
+                <button type="button" class="btn btn-success m-4">Payment</button>
+                <button type="button" class="btn btn-warning m-4">Clear</button>
+              </div> -->
 
             </div>
 
