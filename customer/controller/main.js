@@ -33,7 +33,7 @@ function displayProducts(arrayProduct) {
     // console.log(arrayProduct);
     arrayProduct.map(function(product){
         content += `
-        <div class="col-3">
+        <div class="col-3 mb-3">
             <div class="card" style="width: 18rem;">
                 <img src="${product.img}" class="card-img-top" alt="...">
                 <div class="card-body">
