@@ -3,6 +3,7 @@ var listProduct = [];
 
 // declare a global variable for Product List
 var productService = new ProductService();
+const validation = new Validation();
 
 function getListProducts() {
     var promise = productService.getListProduct();
@@ -46,6 +47,34 @@ function displayProducts(arrayProduct) {
 }
 
 
+
+function validateProductInfo(name, price, screen, backCamera, frontCamera, img) {
+    var isValid = true;
+    //? Check empty name
+    isValid = validation.checkEmpty(name, "Tên sản phẩm không để trống", "tbTenSP");
+
+    //? Check price
+    isValid &= validation.checkEmpty(price, "Giá không để trống", "tbGiaSP");
+    isValid &= validation.checkPrice(price, "Giá phải là số không âm", "tbGiaSP", 0);
+
+    
+    //? Check screen
+    isValid = validation.checkEmpty(screen, "Màn hình không để trống", "tbManHinhSP");
+
+    //? Check back Camera
+    isValid = validation.checkEmpty(backCamera, "Thông số không để trống", "tbCameraSau");
+    //? Check front Camera
+    isValid = validation.checkEmpty(frontCamera, "Thông số không để trống", "tbCameraTruoc");
+
+    //? Check img
+    isValid = validation.checkEmpty(img, "Link ảnh không để trống", "tbHinhSP");
+
+    return isValid;
+}
+
+
+
+
 document.querySelector("#btnThemSP").onclick = function () {
     //thêm button thêm sản phẩm cho form
     //có thể điền thêm code nếu cần
@@ -65,32 +94,37 @@ function addProduct() {
 
     var type = document.querySelector("#LoaiSP").value;
 
-    var newProduct = new Products(name, price, screen, backCamera, frontCamera, img, desc, type);
-    console.log(newProduct);
+    var isValid = validateProductInfo(name, price, screen, backCamera, frontCamera, img);
 
-    productService.addProduct(newProduct)
-        .then(function (result) {
-            //thành công
-            // console.log(result);
-            alert("Thêm thành công");
-            //reset form
-            document.querySelector("#TenSP").value = "";
-            document.querySelector("#GiaSP").value ="";
-            document.querySelector("#HinhSP").value = "";
-            document.querySelector("#Mota").value = "";
+    if(isValid){
+        var newProduct = new Products(name, price, screen, backCamera, frontCamera,     img, desc, type);
+        console.log(newProduct);
 
-            //? onclick: gán sự kiện mới
-            //? click(): gọi sự kiện click có sẵn của thẻ
-            document.querySelector("#myModal .close").click();
+        productService.addProduct(newProduct)
+            .then(function (result) {
+                //thành công
+                // console.log(result);
+                alert("Thêm thành công");
+                //reset form
+                document.querySelector("#TenSP").value = "";
+                document.querySelector("#GiaSP").value ="";
+                document.querySelector("#HinhSP").value = "";
+                document.querySelector("#Mota").value = "";
 
-            //Lấy danh sách mới sau khi thêm thành công
-            getListProducts();
-        })
-        .catch(function (error) {
-            //thất bại
-            alert("Thêm thất bại");
-            console.log(error);
-        })
+                //? onclick: gán sự kiện mới
+                //? click(): gọi sự kiện click có sẵn của thẻ
+                document.querySelector("#myModal .close").click();
+
+                //Lấy danh sách mới sau khi thêm thành công
+                getListProducts();
+            })
+            .catch(function (error) {
+                //thất bại
+                alert("Thêm thất bại");
+                console.log(error);
+            })
+    }
+    
 }
 
 
@@ -148,18 +182,22 @@ function updateProduct(id) {
 
     var type = document.querySelector("#LoaiSP").value;
 
-    var newData= new Products(name, price, screen, backCamera, frontCamera, img, desc, type);
-    console.log(newData);
-    
-    productService.updateProduct(id, newData)
-        .then(function (result) {
-            console.log(result.data);
-            getListProducts();
-            document.querySelector("#myModal .close").click();
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    var isValid = validateProductInfo(name, price, screen, backCamera, frontCamera, img);
+
+    if(isValid) {
+        var newData= new Products(name, price, screen, backCamera, frontCamera, img, desc, type);
+        console.log(newData);
+        
+        productService.updateProduct(id, newData)
+            .then(function (result) {
+                console.log(result.data);
+                getListProducts();
+                document.querySelector("#myModal .close").click();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 }
 
 
