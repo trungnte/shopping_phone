@@ -1,0 +1,46 @@
+[
+    {
+     "id": "1",
+     "name": "iPhone 14 Pro Max",
+     "price": "1400",
+     "screen": "screen 6.7",
+     "backCamera": "48 MP & 12 MP, 12 MP",
+     "frontCamera": "12 MP",
+     "img": "https://cdn.tgdd.vn/Products/Images/42/251192/s16/iPhone-14-Pro-series-%20(4)-650x650.png",
+     "desc": "Pro Vượt trội",
+     "type": "iphone"
+    },
+    {
+     "id": "2",
+     "name": "Samsung Galaxy S22 Ultra",
+     "price": "1100",
+     "screen": "screen 6.8",
+     "backCamera": "108 MP & 12 MP, 10 MP, 10 MP",
+     "frontCamera": "40 MP",
+     "img": "https://cdn.tgdd.vn/Products/Images/42/235838/Galaxy-S22-Ultra-Burgundy-600x600.jpg",
+     "desc": "Diện mạo đầy nổi bật",
+     "type": "Samsung"
+    },
+    {
+     "id": "3",
+     "name": "Samsung Galaxy Z Fold3",
+     "price": "1300",
+     "screen": "screen 6.8",
+     "backCamera": "12 MP, 12 MP, 12 MP",
+     "frontCamera": "10 MP & 4MP",
+     "img": "https://cdn.tgdd.vn/Products/Images/42/226935/samsung-galaxy-z-fold-3-silver-1-600x600.jpg",
+     "desc": "Màn hình gập đầu tiên trên thế giới",
+     "type": "Samsung"
+    },
+    {
+     "id": "4",
+     "name": "iPhone 13",
+     "price": "800",
+     "screen": "screen 61",
+     "backCamera": "Camera: 12MP, 12 MP",
+     "frontCamera": "12 MP",
+     "img": "https://cdn.tgdd.vn/Products/Images/42/250258/s16/iphone-13-blue-650x650.png",
+     "desc": "Siêu năng lực mới của bạn",
+     "type": "iphone"
+    }
+   ]
