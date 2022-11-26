@@ -55,7 +55,7 @@ function validateProductInfo(name, price, screen, backCamera, frontCamera, img) 
 
     //? Check price
     isValid &= validation.checkEmpty(price, "Giá không để trống", "tbGiaSP");
-    isValid &= validation.checkPrice(price, "Giá không để trống", "tbGiaSP", 0);
+    isValid &= validation.checkPrice(price, "Giá phải là số không âm", "tbGiaSP", 0);
 
     
     //? Check screen
