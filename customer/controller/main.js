@@ -7,15 +7,10 @@ var productService = new ProductService();
 
 // set local storage
 function setLocalStorage() {
-    localStorage.setItem("LISTPRODUCT", listProduct);
+    // console.log("Set local storage: ", listProduct);
+    localStorage.setItem("LISTPRODUCT", JSON.stringify(listProduct));
 }
-// get local storage
-function getLocalStorage() {
-    if(localStorage.getItem("LISTPRODUCT") != null) {
-        listProduct = JSON.parse(localStorage.getItem("LISTPRODUCT"));
-        displayProducts(listProduct);
-    }
-}
+
 
 function getListProducts() {
     var promise = productService.getListProduct();
@@ -74,8 +69,14 @@ function filterProductByType(typeProduct) {
 function filterProduct() {
     var inputProductType = document.querySelector("#filterProduct").value;
     var arrayFilterPorduct = filterProductByType(inputProductType);
-    console.log(arrayFilterPorduct);
-    displayProducts(arrayFilterPorduct);
+    // console.log(inputProductType, arrayFilterPorduct, typeof arrayFilterPorduct.length, arrayFilterPorduct.length);
+    if(arrayFilterPorduct.length > 0){
+        displayProducts(arrayFilterPorduct);
+    }
+    else {
+        // render full product in case of inputProductType invalid
+        displayProducts(listProduct);
+    }
 }
 
 //  entry program
@@ -130,6 +131,8 @@ function addToCart(id) {
             listCartItem.push(cartItem);
         }
         console.log(listCartItem);
+        // TODO: sync data with local storage
+        setCartItemLocalStorage();
     }
 }
 
@@ -169,11 +172,31 @@ function renderItemInCart(arrayItem) {
         `;
     });
 
+    var calcMoneyContent = `
+            <div class="cart__total">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                        <th>Total</th>
+                        <td class="align-right product__price">${calcMoneyCart(arrayItem)}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cart__footer d-flex p-2">
+                <button type="button" class="btn btn-success m-4" onclick="paymentCart()">Payment</button>
+                <button type="button" class="btn btn-warning m-4" onclick="clearCart()">Clear</button>
+            </div>
+
+    `;
+
     // console.log(content)
-    document.querySelector("#listCartItems").innerHTML = content;
+    document.querySelector("#listCartItems").innerHTML = content + calcMoneyContent;
 }
 
 function openCartCanvas() {
+    // TODO: load listCartItems from local storagre !!!
+    getCartItemLocalStorage();
     renderItemInCart(listCartItem);
 }
 
@@ -183,6 +206,8 @@ function removeCartItem(id) {
     var index = checkItemInCart(id);
     if(index >= 0) {
         listCartItem.splice(index, 1);
+        // TODO: sync data with local storage
+        setCartItemLocalStorage();
         renderItemInCart(listCartItem);
     }
 }
@@ -195,7 +220,45 @@ function adjustQuantity(id, num) {
             removeCartItem(id);
         }
         else {
+            // TODO: sync data with local storage
+            setCartItemLocalStorage();
             renderItemInCart(listCartItem);
         }
+
     }
+}
+
+function calcMoneyCart(arrayItem) {
+    var sum = 0;
+    arrayItem.map(function(item){
+        sum += item.product.price * item.quantity;
+    });
+    return sum;
+}
+
+// set Cart Item local storage
+function setCartItemLocalStorage() {
+    // console.log("SetLocalStorage: ", listCartItem);
+    localStorage.setItem("CARTITEM", JSON.stringify(listCartItem));
+}
+
+// get Cart Item local storage
+function getCartItemLocalStorage() {
+    if(localStorage.getItem("CARTITEM") != null) {
+        listCartItem = JSON.parse(localStorage.getItem("CARTITEM"));
+        renderItemInCart(listCartItem);
+    } else {
+        console.log("getCartItemLocalStorage null!");
+    }
+}
+
+function clearCart() {
+    listCartItem = [];
+    setCartItemLocalStorage();
+    renderItemInCart(listCartItem);
+}
+
+function paymentCart() {
+    clearCart();
+    document.querySelector("#closeCart").click();
 }
